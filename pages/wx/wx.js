@@ -1,4 +1,4 @@
-// pages/zfb/zfb.js
+// pages/wx/wx.js
 Page({
 
   /**
@@ -7,11 +7,7 @@ Page({
   data: {
 
   },
-  onNavigatorTap:function(e){
-    wx.navigateTo({
-      url: '/pages/logs/logs',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */

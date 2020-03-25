@@ -1,2 +1,7 @@
 <!--pages/login/login.wxml-->
 <text>pages/login/login.wxml</text>
+
+<button class="weui-btn" type="primary" bindtap="getCookie">获取cookie 并且 保存到本地</button>
+<button class="weui-btn" type="primary" bindtap="sendCookie">读取本地cookie并发送cookie</button>
+
+<button class="weui-btn" type="primary" bindtap="authorize">认证登录</button>

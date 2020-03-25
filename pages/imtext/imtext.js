@@ -53,7 +53,7 @@ Page({
     wx.downloadFile({
       url: 'http://127.0.0.1:8000/api/v1.0/apps/image1/',
       success: function(res) {
-        console.log('成功了..')
+        console.log('gcd成功了..')
         console.log(res.tempFilePath)
         console.log(res.filePath)
         var tmpPath = res.tempFilePath
@@ -67,12 +67,11 @@ Page({
     })
   },
 
-  // 删除图片
-  deletepic: function(imgItem) {
+  deletepic: function (imgItem) {
     wx.request({
-      url: 'http://127.0.0.1:8000/api/v1.0/apps/image1/?name="9b0415c5d3ea31b8eead3b994a45.jpg',
+      url: 'http://127.0.0.1:8000/api/v1.0/apps/image1/?name=9b0415c5d3ea31b8eead3b994a45.png',
       method: 'DELETE',
-      success: function(res) {
+      success: function (res) {
         console.log(res.data)
         wx.showToast({
           title: res.data,

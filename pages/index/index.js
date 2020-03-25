@@ -9,6 +9,18 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
+  network_request: function () {
+    wx.request({
+      url: 'http://127.0.0.1:8000/api/v1.0/apps/juhe/',
+
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+      }
+    })
+  },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({

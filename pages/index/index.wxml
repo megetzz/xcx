@@ -11,3 +11,4 @@
     <text class="user-motto">{{motto}}</text>
   </view>
 </view>
+  <button class="weui-btn" type="primary" bindtap="network_request">网络请求</button>
