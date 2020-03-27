@@ -37,6 +37,6 @@ App({
     userInfo: null,
     appurl: 'http://127.0.0.1:8000/api',
     appv: '/v1.0',
-    routeapp: '/apps'
+    routeapp: '/apps/'
   }
 })

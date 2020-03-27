@@ -83,7 +83,7 @@ Page({
   // 长按确认删除函数
   longTapConfirm: function(e) {
     var that = this
-    var confirmList = ["删除这个图片", '其他', 'sss']
+    var confirmList = ["删除", '分享', '保存','zz']
     wx.showActionSheet({
       itemList: confirmList,
       success: function(res) {

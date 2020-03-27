@@ -11,7 +11,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
     var timestamp = Date.parse(new Date()) / 1000;
     console.log(timestamp)
@@ -22,8 +22,8 @@ Page({
       // 2 如果不可以,就读取自定义本地配置文件
       // this.readfile2() 没成功
       // 3 如果也不可以,获取远端参数
-      url: 'http://v.juhe.cn/joke/content/list.php?sort=desc&page=1&pagesize=5&time=' + timestamp + '&key=a3d4e42ae7d867b78774ca35f741f124',
-      success: function (res) {
+      url: 'http://v.juhe.cn/joke/content/list.php?sort=desc&page=5&pagesize=10&time=' + timestamp + '&key=ccea89c0e0afc91fe1f4db1e233d474d',
+      success: function(res) {
         console.log(res.data)
         // # 数据请求成功了,更新到前台界面
         that.setData({
@@ -39,52 +39,52 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     wx.updateShareMenu({
       withShareTicket: true,
-      success() { }
+      success() {}
     })
   }
 })

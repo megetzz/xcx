@@ -1,13 +1,16 @@
 {
   "pages": [
-    "pages/homepage/homepage",
     "pages/login/login",
     "pages/index/index",
     "pages/apps/apps",
     "pages/imtext/imtext",
     "pages/logs/logs",
+    "pages/wx/wx",
     "pages/zfb/zfb",
     "pages/jokes/jokes",
+    
+    "pages/homepage/homepage",
+    
     "pages/picker/picker"
   ],
   "window": {
@@ -30,7 +33,6 @@
         "pagePath": "pages/imtext/imtext",
         "text": "图文"
       },
-      
       {
         "pagePath": "pages/homepage/homepage",
         "text": "个人"

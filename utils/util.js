@@ -14,6 +14,33 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const key = 'cookie'
+// 从后台获取session(cookie)
+// 吧cookie保存到本地
+// 从本地读出cookie,以便于携带cookie 到后台
+function getSessionIDFromResponse(res) {
+  var cookie = res.header['Set-Cookie']
+  console.log('getSessionIDFromResponse:' + cookie)
+  return cookie
+}
+
+function setCookieToStorage(cookie) {
+  try {
+    wx.setStorageSync(key, cookie)
+  } catch (e) {
+    console.log(e)
+  }
+
+}
+
+function getCookieFromStorage() {
+  var value = ws.getStorageSync(key)
+  return value
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  getSessionIDFromResponse: getSessionIDFromResponse,
+  setCookieToStorage: setCookieToStorage,
+  getCookieFromStorage: getCookieFromStorage
 }
