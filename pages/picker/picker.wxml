@@ -42,7 +42,7 @@
     <picker wx:if="{{isStockPicker}}" bindchange="bindStockPickerChange" range-key="{{'fullInfo'}}" range="{{allPickerData.allStock}}">
       <button type="default">添加股票</button>
     </picker>
-    <picker wx:if="{{isCityPicker}}" class="weui-btn" mode="region" data-name="region" value="{{['河南省', '郑州市', '金水区']}}" bindchange="bindRegionPickerChange">
+    <picker wx:if="{{isCityPicker}}" class="weui-btn" mode="region" data-name="region" value="{{['山西省', '太原市', '小店区']}}" bindchange="bindRegionPickerChange">
       <button type="default">添加城市</button>
     </picker>
     <button class="weui-btn" type="primary" bindtap='onSave'>保存</button>

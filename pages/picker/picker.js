@@ -28,7 +28,7 @@ Page({
   },
   // options 是url = '../picker/picker?type=' + navigatorType+'&abc=11111111111111111111110' 中的?后边的参数
   onLoad: function (options) {
-    console.log(options)
+    console.log('参数',options)
     this.setData({
       isConstellPicker: false,
       isStockPicker: false,
