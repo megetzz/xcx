@@ -45,7 +45,7 @@ Page({
       navigatorType = 'constellation'
     }
     // var url = '../picker/picker?type=' + navigatorType + '&abc=123'
-    var url = '../picker/picker?type=' + navigatorType + '&abc = 11111111111101010101110'
+    var url = '../picker/picker?type=' + navigatorType + '&abc = 12334'
     wx.navigateTo({
       // url: url,
       url:url
@@ -64,9 +64,9 @@ Page({
         var nickName = app.globalData.userInfo.nickName
         // 请求后台
         wx.request({
-          // url: 'http://127.0.0.1:8000/api/v1.0/apps/authorize/',
+          url: 'http://127.0.0.1:8000/api/v1.0/apps/authorize/',
           // url: app.globalData.appurl + app.globalData.appv + app.globalData.routeapp+'authorize/',
-          url:app.globalData.serverUrl + app.globalData.apiVersion + '/apps/authorize/',
+
           method: 'POST',
           data: {
             code: code,

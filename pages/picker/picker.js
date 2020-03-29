@@ -27,8 +27,8 @@ Page({
     }
   },
   // options 是url = '../picker/picker?type=' + navigatorType+'&abc=11111111111111111111110' 中的?后边的参数
-  onLoad: function (options) {
-    console.log('参数',options)
+  onLoad: function(options) {
+    console.log('参数', options)
     this.setData({
       isConstellPicker: false,
       isStockPicker: false,
@@ -54,20 +54,21 @@ Page({
     var that = this
     // todo
     wx.request({
-      url: 'http://127.0.0.1:8000/api/v1.0/apps/user/',
+      // url: 'http://127.0.0.1:8000/api/v1.0/apps/user/',
+      url: app.globalData.serverUrl + app.globalData.apiVersion + '/auth/user',
       method: 'GET',
       header: header,
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         that.setData({
-          personal: res.data.focus
+          personal: res.data.data.focus
         })
       }
     })
   },
 
   // 保存后台
-  onSave: function (isShowModal = true) {
+  onSave: function(isShowModal = true) {
     var header = {}
     var cookie = cookieUtil.getCookieFromStorage()
     header.Cookie = cookie
@@ -75,6 +76,7 @@ Page({
     // todo
     wx.request({
       url: 'http://127.0.0.1:8000/api/v1.0/apps/user/',
+      // url: app.globalData.serverUrl + app.globalData.apiVersion + '/auth/user',
       method: 'POST',
       data: {
         city: that.data.personal.city,
@@ -82,7 +84,7 @@ Page({
         constellation: that.data.personal.constellation
       },
       header: header,
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         wx.showModal({
           title: '保存成功',
@@ -93,7 +95,7 @@ Page({
   },
 
   // 星座运势picker变更
-  bindConstellationPickerChange: function (e) {
+  bindConstellationPickerChange: function(e) {
     console.log('constellPicker发送选择改变，携带值为', e.detail.value)
     var newItem = this.data.allPickerData.allConstellation[e.detail.value]
     var newData = this.data.personal.constellation
@@ -109,7 +111,7 @@ Page({
   },
 
   // 股票运势picker变更
-  bindStockPickerChange: function (e) {
+  bindStockPickerChange: function(e) {
     var newItem = this.data.allPickerData.allStock[e.detail.value]
     var newData = this.data.personal.stock
     // 去重
@@ -128,8 +130,9 @@ Page({
   },
 
   // 地区picker变更
-  bindRegionPickerChange: function (e) {
+  bindRegionPickerChange: function(e) {
     console.log('bindRegionPickerChange:')
+    // e 整个的控件
     console.log(e)
     console.log('cityPicker发送选择改变，携带值为', e.detail.value)
     var pickerValue = e.detail.value
@@ -150,7 +153,8 @@ Page({
     var newPersonalData = this.data.personal
     newPersonalData.city = newData
     console.log('personal')
-    console.log(newData)
+    console.log('newdata', newData)
+
     this.setData({
       personal: newPersonalData
 
@@ -158,7 +162,7 @@ Page({
   },
 
   // 删除列表元素
-  deleteItem: function (e) {
+  deleteItem: function(e) {
     var that = this
     var deleteType = e.currentTarget.dataset.type
     var index = e.currentTarget.dataset.index
@@ -168,7 +172,7 @@ Page({
     wx.showModal({
       content: "确认删除此项吗？",
       showCancel: true,
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         if (res.confirm) {
           if (deleteType == 'constellation') {
