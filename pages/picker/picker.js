@@ -54,14 +54,14 @@ Page({
     var that = this
     // todo
     wx.request({
-      // url: 'http://127.0.0.1:8000/api/v1.0/apps/user/',
-      url: app.globalData.serverUrl + app.globalData.apiVersion + '/auth/user',
+      url: 'http://127.0.0.1:8000/api/v1.0/apps/user/',
+      // url: app.globalData.serverUrl + app.globalData.apiVersion + '/apps/user',
       method: 'GET',
       header: header,
       success: function(res) {
         console.log(res)
         that.setData({
-          personal: res.data.data.focus
+          personal: res.data.focus
         })
       }
     })
