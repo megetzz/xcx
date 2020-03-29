@@ -1,6 +1,6 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function() {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -33,10 +33,24 @@ App({
       }
     })
   },
+  getAuthStatus: function() {
+    return this.globalData.auth.isAuthorized
+  },
+  setAuthStatus: function(status) {
+    console.log('set auth status: ' + status)
+    if (status == true || status == false) {
+      this.globalData.auth.isAuthorized = status
+    } else {
+      console.log('invalid status.')
+    }
+  },
   globalData: {
     userInfo: null,
     appurl: 'http://127.0.0.1:8000/api',
     appv: '/v1.0',
-    routeapp: '/apps/'
+    routeapp: '/apps/',
+    auth: {
+      isAuthorized: false
+    }
   }
 })

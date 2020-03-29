@@ -8,9 +8,13 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    isLogin: null,
+    userInfo: null,
+    hasUserInfo: null
+  },
 
-  onReadCookies: function () {
+  onReadCookies: function() {
     console.log('onReadCookies....')
     wx.request({
       url: app.globalData.serverUrl + app.globalData.apiVersion + '/auth/test',
@@ -18,12 +22,11 @@ Page({
         var cookie = cookieUtil.getSessionIDFromResponse(res)
         console.log(cookie)
       }
-    }
-    )
+    })
   },
 
   // navigator跳转处理
-  onNavigatorTap: function (event) {
+  onNavigatorTap: function(event) {
     var cookie = cookieUtil.getCookieFromStorage()
     if (cookie.length == 0) {
       wx.showToast({
@@ -48,16 +51,16 @@ Page({
     var url = '../picker/picker?type=' + navigatorType + '&abc = 12334'
     wx.navigateTo({
       // url: url,
-      url:url
+      url: url,
     })
   },
 
-  authorize: function () {
+  authorize: function() {
     console.log('authorize')
     var that = this
     // 登陆并获取cookie
     wx.login({
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         var code = res.code
 
@@ -81,65 +84,109 @@ Page({
             var cookie = cookieUtil.getSessionIDFromResponse(res)
             cookieUtil.setCookieToStorage(cookie)
             console.log(cookie)
+            // 新增关于按钮状态的函数
+            that.setData({
+              isLogin: true,
+              userInfo: app.globalData.userInfo,
+              hasUserInfo: true
+            })
+            app.setAuthStatus(true)
           }
         })
       }
     })
   },
-
+  logout: function() {
+    var that = this
+    var cookie = cookieUtil.getCookieFromStorage()
+    var header = {}
+    header.Cookie = cookie
+    wx.request({
+      url: app.globalData.appurl + app.globalData.appv + '/apps/logout/',
+      method: 'GET',
+      header: header,
+      success: function(res) {
+        that.setData({
+          isLogin: false,
+          userInfo: null,
+          hasUserInfo: false
+        })
+        cookieUtil.setCookieToStorage('')
+        app.setAuthStatus(false)
+      }
+    })
+  },
+  getStatusFromeRemote: function() {
+    var that = this
+    var cookie = cookieUtil.getCookieFromStorage()
+    var header = {}
+    header.Cookie = cookie
+    wx.request({
+      url: app.globalData.appurl + app.globalData.appv + '/apps/status/',
+      method: 'GET',
+      header: header,
+      success: function(res) {
+        if (res.data.is_authorized == 1) {
+          console.log('登录状态!!!')
+        } else {
+          console.log('session过期,未登录状态!!!')
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

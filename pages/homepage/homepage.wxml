@@ -37,5 +37,8 @@
   </view>
   <view class="page__bd page__bd_spacing button-sp-area">
     <button class="weui-btn mini-btn" type="primary" disabled="{{isLogin}}" bindtap='authorize'>授权登录</button>
+    <button class="weui-btn mini-btn" type="warn" disabled="{{!isLogin}}" bindtap='logout'>注销(登出)</button>
+    <button class="weui-btn mini-btn" type="warn"  bindtap='getStatusFromeRemote'>获取状态</button>
+    <!-- 和获取的后台状态 -->
   </view>
 </view>
